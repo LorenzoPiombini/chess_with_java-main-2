@@ -57,4 +57,30 @@ public class PawnTest {
 
     }
 
+    @Test
+    public void testWhitePawnCapture() {
+        ChessBoard board = new ChessBoard();
+
+        Pawn whitePawn = new Pawn(Constant.W);
+        Pawn blackPawn = (Pawn) board.getPiece(1, 1);
+
+        board.placeApieceInThisSquare(5, 0, blackPawn);// placing the black pawn in 5,0 ready to be capture
+
+        assertTrue(whitePawn.isValidMove(6, 1, 5, 0, board));// capturing the black pawn
+
+    }
+
+    @Test
+    public void testBlackPawnCapture() {
+        ChessBoard board = new ChessBoard();
+
+        Pawn blackPawn = new Pawn(Constant.W);
+        Pawn whitePawn = (Pawn) board.getPiece(6, 1);
+
+        board.placeApieceInThisSquare(2, 0, whitePawn);// placing the white pawn in 2,0 ready to be capture
+
+        assertTrue(blackPawn.isValidMove(1, 1, 2, 0, board));// capturing the white pawn
+
+    }
+
 }
