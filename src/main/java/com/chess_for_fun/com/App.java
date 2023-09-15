@@ -1,7 +1,7 @@
 package com.chess_for_fun.com;
 
+import com.chess_for_fun.com.Constants.Constant;
 import com.chess_for_fun.com.Pieces.Pawn;
-import com.chess_for_fun.com.Pieces.Queen;
 
 /**
  * Hello world!
@@ -9,16 +9,17 @@ import com.chess_for_fun.com.Pieces.Queen;
  */
 public class App {
     public static void main(String[] args) {
+
         ChessBoard board = new ChessBoard();
 
-        Pawn pawn = (Pawn) board.getPiece(6, 1);
-        Queen queen = (Queen) board.getPiece(0, 3);
+        Pawn whitePawn = new Pawn(Constant.W);
+        Pawn blackPawn = (Pawn) board.getPiece(1, 3);
 
-        queen.setCurrentPosition(2, 1);
+        board.placeApieceInThisSquare(4, 0, blackPawn);
 
-        System.out.println("The queen is: " + board.getPiece(2, 1));
+        board.movePiece(6, 2, 4, 2);
 
-        System.out.println(pawn.isValidMove(1, 1, 2, 1, board));
+        System.out.println(blackPawn.isValidMove(4, 0, 5, 1, board));
 
     }
 }

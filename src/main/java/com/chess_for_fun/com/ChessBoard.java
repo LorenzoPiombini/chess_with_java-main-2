@@ -127,7 +127,7 @@ public class ChessBoard {
 
             }
 
-            lastMove = new Move(startX, startY, endX, endY, piece);
+            setLastMove(new Move(startX, startY, endX, endY, piece));
             return true;
         }
 
@@ -163,6 +163,10 @@ public class ChessBoard {
     // only for test and debug
     public void placeApieceInThisSquare(int x, int y, Piece piece) {
         board[x][y] = piece;
+    }
+
+    public void setLastMove(Move move) {
+        this.lastMove = move;
     }
 
 }

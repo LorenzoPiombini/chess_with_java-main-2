@@ -35,7 +35,7 @@ public class Pawn extends Piece {
         }
 
         // diagonal capture
-        if ((Math.abs(startX - endX) == 1) && startY + direction == endY) {
+        if ((Math.abs(startY - endY) == 1) && startX + direction == endX) {
             Piece target = board[endX][endY];
             if (target != null && !target.getColor().equals(this.getColor())) {
                 return true;
@@ -45,9 +45,9 @@ public class Pawn extends Piece {
         // en passant move
         if (lastMove != null
                 && lastMove.getPiecedMoved() instanceof Pawn
-                && Math.abs(lastMove.getStartY() - lastMove.getEndY()) == 2
+                && Math.abs(lastMove.getStartX() - lastMove.getEndX()) == 2
                 && ((lastMove.getEndX() == startX + 1) || (lastMove.getEndX() == startX - 1))
-                && lastMove.getEndY() == startY) {
+                && Math.abs(lastMove.getEndY() - startY) == 1) {
 
             return true;
         }
