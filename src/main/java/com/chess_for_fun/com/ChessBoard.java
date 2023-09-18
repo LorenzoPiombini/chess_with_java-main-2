@@ -149,7 +149,7 @@ public class ChessBoard {
                             return true;
                         }
                     } else {
-                        if (piece.isValidMove(x, y, x, y, this))
+                        if (piece.isValidMove(x, y, targetX, targetY, this))
                             return true;
                     }
 
@@ -170,6 +170,16 @@ public class ChessBoard {
 
     public void setLastMove(Move move) {
         this.lastMove = move;
+    }
+
+    // only for testing
+    public void clearBoard() {
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                board[x][y] = null;
+            }
+
+        }
     }
 
 }

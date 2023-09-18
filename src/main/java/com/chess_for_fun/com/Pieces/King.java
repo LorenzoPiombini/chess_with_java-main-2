@@ -13,23 +13,24 @@ public class King extends Piece {
 
     @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board) {
-        return (canMoveTo(startX, startY, endX, endY, board) || canCastle(startX, startY, endY, board));
+        return (!board.isTheSquareUnderAttack(endX, endY, color) && canMoveTo(startX, startY, endX, endY, board)
+                || canCastle(startX, startY, endY, board));
     }
 
-    public boolean canCastle(int startX, int startY, int endY, ChessBoard chessBoard) {
+    public boolean canCastle(int startX, int startY, int endX, ChessBoard chessBoard) {
         if (hasMoved || isCheck(chessBoard))
             return false;
 
-        return (endY == startY + 2 && canCastlingKingSide(startX, startY, chessBoard)) ||
-                (endY == startY - 2 && canCastlingQueenSide(startX, startY, chessBoard));
+        return (endX == startX + 2 && canCastlingKingSide(startX, startY, chessBoard)) ||
+                (endX == startX - 2 && canCastlingQueenSide(startX, startY, chessBoard));
 
     }
 
     private boolean canCastlingQueenSide(int startX, int startY, ChessBoard chessBoard) {
-        Piece rook = chessBoard.getPiece(startX, startY - 4);
+        Piece rook = chessBoard.getPiece(startX - 4, startY);
 
         if (rook instanceof Rook && rook.getColor().equals(this.getColor()) && !((Rook) rook).getHasMoved()) {
-            for (int i = startY - 1; i >= startY - 3; i--) {
+            for (int i = startX - 1; i >= startX - 3; i--) {
                 if (chessBoard.getPiece(startX, i) != null)
                     return false;
 
@@ -47,14 +48,14 @@ public class King extends Piece {
 
         if (rook instanceof Rook && rook.getColor().equals(this.color) && !((Rook) rook).getHasMoved()) {
 
-            for (int i = currentY + 1; i <= currentY + 2; i++) {
+            for (int i = currentX + 1; i <= currentX + 2; i++) {
 
                 // check if there are pieces on the way
-                if (chessBoard.getPiece(startX, i) != null)
+                if (chessBoard.getPiece(i, startY) != null)
                     return false;
 
                 // check if the square is under attack
-                if (chessBoard.isTheSquareUnderAttack(startX, i, this.color))
+                if (chessBoard.isTheSquareUnderAttack(i, startY, this.color))
                     return false;
 
             }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.chess_for_fun.com.Constants.Constant;
 import com.chess_for_fun.com.Pieces.Pawn;
 import com.chess_for_fun.com.Pieces.Queen;
 
