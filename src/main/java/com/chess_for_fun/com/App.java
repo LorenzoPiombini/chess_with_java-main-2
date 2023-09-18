@@ -1,6 +1,5 @@
 package com.chess_for_fun.com;
 
-import com.chess_for_fun.com.Constants.Constant;
 import com.chess_for_fun.com.Pieces.Pawn;
 
 /**
@@ -12,14 +11,13 @@ public class App {
 
         ChessBoard board = new ChessBoard();
 
-        Pawn whitePawn = new Pawn(Constant.W);
-        Pawn blackPawn = (Pawn) board.getPiece(1, 3);
+        Pawn blackPawn = (Pawn) board.getPiece(1, 1);
 
-        board.placeApieceInThisSquare(4, 0, blackPawn);
+        board.placeApieceInThisSquare(1, 4, blackPawn);
 
-        board.movePiece(6, 2, 4, 2);
+        board.movePiece(2, 6, 2, 4); // moving a white pawn in square 6,1
 
-        System.out.println(blackPawn.isValidMove(4, 0, 5, 1, board));
+        System.out.println(blackPawn.isValidMove(1, 4, 2, 5, board));
 
     }
 }

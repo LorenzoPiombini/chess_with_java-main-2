@@ -21,21 +21,21 @@ public class Pawn extends Piece {
         Move lastMove = chessBoard.getLastMove();
 
         // move forward by one square
-        if (startX + direction == endX && startY == endY) {
+        if (startY + direction == endY && startX == endX) {
             return (board[endX][endY] == null);
         }
 
         // initial two square move
-        if (this.getColor().equals(Constant.W) && startX == 6 && startX + 2 * direction == endX && startY == endY) {
-            return (board[endX][endY] == null && board[startX + direction][startY] == null);
+        if (this.getColor().equals(Constant.W) && startY == 6 && startY + 2 * direction == endY && startX == endX) {
+            return (board[endX][endY] == null && board[startX][startY + direction] == null);
         }
 
-        if (this.getColor().equals(Constant.B) && startX == 1 && startY + 2 * direction == endX && startY == endY) {
+        if (this.getColor().equals(Constant.B) && startY == 1 && startY + 2 * direction == endY && startX == endX) {
             return (board[endX][endY] == null && board[endX][startY + direction] == null);
         }
 
         // diagonal capture
-        if ((Math.abs(startY - endY) == 1) && startX + direction == endX) {
+        if ((Math.abs(startX - endX) == 1) && startY + direction == endY) {
             Piece target = board[endX][endY];
             if (target != null && !target.getColor().equals(this.getColor())) {
                 return true;
@@ -45,9 +45,9 @@ public class Pawn extends Piece {
         // en passant move
         if (lastMove != null
                 && lastMove.getPiecedMoved() instanceof Pawn
-                && Math.abs(lastMove.getStartX() - lastMove.getEndX()) == 2
+                && Math.abs(lastMove.getStartY() - lastMove.getEndY()) == 2
                 && ((lastMove.getEndX() == startX + 1) || (lastMove.getEndX() == startX - 1))
-                && Math.abs(lastMove.getEndY() - startY) == 1) {
+                && Math.abs(lastMove.getEndY() - startY) == 0) {
 
             return true;
         }

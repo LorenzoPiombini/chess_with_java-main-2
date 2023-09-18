@@ -53,4 +53,9 @@ public abstract class Piece {
         this.currentY = y;
     }
 
+    @Override
+    public String toString() {
+        return "the piece is a " + this.getColor() + " " + this.getClass().getSimpleName();
+    }
+
 }

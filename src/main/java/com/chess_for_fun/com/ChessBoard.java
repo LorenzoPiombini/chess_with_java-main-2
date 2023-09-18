@@ -23,35 +23,35 @@ public class ChessBoard {
     }
 
     private void setUpBoard() {
-        for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(Constant.B);
-            board[6][i] = new Pawn(Constant.W);
+        for (int x = 0; x < 8; x++) {
+            board[x][1] = new Pawn(Constant.B);
+            board[x][6] = new Pawn(Constant.W);
         }
 
         board[0][0] = new Rook(Constant.B);
-        board[0][7] = new Rook(Constant.B);
-        board[7][0] = new Rook(Constant.W);
+        board[7][0] = new Rook(Constant.B);
+        board[0][7] = new Rook(Constant.W);
         board[7][7] = new Rook(Constant.W);
 
-        board[0][1] = new Knight(Constant.B);
-        board[0][6] = new Knight(Constant.B);
-        board[7][1] = new Knight(Constant.W);
-        board[7][6] = new Knight(Constant.W);
+        board[1][0] = new Knight(Constant.B);
+        board[6][0] = new Knight(Constant.B);
+        board[1][7] = new Knight(Constant.W);
+        board[6][7] = new Knight(Constant.W);
 
-        board[0][2] = new Bishop(Constant.B);
-        board[0][5] = new Bishop(Constant.B);
-        board[7][2] = new Bishop(Constant.W);
-        board[7][5] = new Bishop(Constant.W);
+        board[2][0] = new Bishop(Constant.B);
+        board[5][0] = new Bishop(Constant.B);
+        board[2][7] = new Bishop(Constant.W);
+        board[5][7] = new Bishop(Constant.W);
 
-        board[0][3] = new Queen(Constant.B);
-        board[0][4] = new King(Constant.B);
-        King kingB = (King) getPiece(0, 4);
-        kingB.setCurrentPosition(0, 4);
+        board[4][0] = new Queen(Constant.B);
+        board[3][0] = new King(Constant.B);
+        King kingB = (King) getPiece(3, 0);
+        kingB.setCurrentPosition(3, 0);
 
-        board[7][3] = new Queen(Constant.W);
-        board[7][4] = new King(Constant.W);
-        King kingW = (King) getPiece(7, 4);
-        kingW.setCurrentPosition(7, 4);
+        board[4][7] = new Queen(Constant.W);
+        board[3][7] = new King(Constant.W);
+        King kingW = (King) getPiece(3, 7);
+        kingW.setCurrentPosition(3, 7);
     }
 
     public Piece getPiece(int x, int y) {
@@ -73,8 +73,11 @@ public class ChessBoard {
     public boolean movePiece(int startX, int startY, int endX, int endY) {
         Piece piece = getPiece(startX, startY);
 
-        if (piece == null)
+        if (piece == null) {
             return false;
+        }
+
+        System.out.println(piece.toString());
 
         if (piece.isValidMove(startX, startY, endX, endY, this)) {
 
