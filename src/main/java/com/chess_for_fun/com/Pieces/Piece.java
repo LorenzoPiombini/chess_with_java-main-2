@@ -18,23 +18,31 @@ public abstract class Piece {
     public abstract boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board);
 
     protected boolean canMoveTo(int startX, int startY, int endX, int endY, ChessBoard chessBoard) {
+
+        if ((startX >= 8 || startX < 0) || (startY >= 8 || startY < 0)
+                || (endX >= 8 || endX < 0) || (endY >= 8 || endY < 0)) {
+            return false;
+        }
+
         Piece destinationPiece = chessBoard.getPiece(endX, endY);
         if (destinationPiece != null && destinationPiece.getColor().equals(this.getColor())) {
             return false;
         }
 
-        int xDirection = (endX > startX) ? 1 : endX < startX ? -1 : 0;
-        int yDirection = (endY > startY) ? 1 : endY < startY ? -1 : 0;
+        if (!(this instanceof Knight)) {// this code will execute for all pieces but knights
+            int xDirection = (endX > startX) ? 1 : endX < startX ? -1 : 0;
+            int yDirection = (endY > startY) ? 1 : endY < startY ? -1 : 0;
 
-        int x = startX + xDirection;
-        int y = startY + yDirection;
+            int x = startX + xDirection;
+            int y = startY + yDirection;
 
-        while (x != endX || y != endY) {
-            if (chessBoard.getPiece(x, y) != null) {
-                return false; // There`s a piece in the way
+            while (x != endX || y != endY) {
+                if (chessBoard.getPiece(x, y) != null) {
+                    return false; // There`s a piece in the way
+                }
+                x += xDirection;
+                y += yDirection;
             }
-            x += xDirection;
-            y += yDirection;
         }
 
         return true;

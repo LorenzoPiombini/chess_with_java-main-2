@@ -9,11 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class KingTest {
 
-    /**
-     * this method test the logic of the king class,
-     * in this test we are testing the logic of isValidMove
-     * and canCastle methods
-     */
     @Test
     public void testValidKingMove() {
         ChessBoard board = new ChessBoard();
@@ -60,5 +55,24 @@ public class KingTest {
         board.placeApieceInThisSquare(2, 4, whiteKing);
 
         assertFalse(whiteKing.isValidMove(2, 4, 2, 3, board));
+    }
+
+    @Test
+    public void kingastling() {
+        ChessBoard board = new ChessBoard();
+
+        board.clearBoard();
+
+        King whiteKing = new King(Constant.W);
+        Rook whiteRookRight = new Rook(Constant.W);
+        Rook whiteRookLeft = new Rook(Constant.W);
+
+        board.placeApieceInThisSquare(7, 7, whiteRookRight);
+        board.placeApieceInThisSquare(3, 7, whiteKing);
+        board.placeApieceInThisSquare(0, 7, whiteRookLeft);
+
+        assertTrue(whiteKing.isValidMove(3, 7, 6, 7, board)); // castling on the right
+        assertTrue(whiteKing.isValidMove(3, 7, 2, 7, board)); // castling on the left
+
     }
 }

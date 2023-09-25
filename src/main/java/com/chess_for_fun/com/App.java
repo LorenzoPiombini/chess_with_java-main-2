@@ -1,9 +1,7 @@
 package com.chess_for_fun.com;
 
 import com.chess_for_fun.com.Constants.Constant;
-import com.chess_for_fun.com.Pieces.King;
-import com.chess_for_fun.com.Pieces.Pawn;
-import com.chess_for_fun.com.Pieces.Rook;
+import com.chess_for_fun.com.Pieces.Knight;
 
 /**
  * Hello world!
@@ -11,17 +9,16 @@ import com.chess_for_fun.com.Pieces.Rook;
  */
 public class App {
     public static void main(String[] args) {
-
         ChessBoard board = new ChessBoard();
         board.clearBoard();
 
-        King whiteKing = new King(Constant.W);
-        Rook blackRook = new Rook(Constant.B);
+        Knight leftWhiteKnight = new Knight(Constant.W);
+        Knight leftBlackKnight = new Knight(Constant.B);
 
-        board.placeApieceInThisSquare(0, 3, blackRook);
-        board.placeApieceInThisSquare(2, 4, whiteKing);
+        board.placeApieceInThisSquare(1, 7, leftWhiteKnight);
+        board.placeApieceInThisSquare(1, 0, leftBlackKnight);
 
-        System.out.println(whiteKing.isValidMove(2, 4, 2, 3, board));
-
+        System.out.println(leftWhiteKnight.isValidMove(1, 7, 0, 5, board));
+        System.out.println(leftWhiteKnight.isValidMove(0, 5, -1, 3, board));
     }
 }
