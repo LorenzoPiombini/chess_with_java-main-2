@@ -11,8 +11,7 @@ public class Knight extends Piece {
     @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board) {
         if (canMoveTo(startX, startY, endX, endY, board) &&
-                ((Math.abs(startX - endX) == 1 && Math.abs(startY - endY) == 2) ||
-                        (Math.abs(startX - endX) == 2 && Math.abs(startY - endY) == 1))) {
+                knightMove(startX, startY, endX, endY)) {
             return true;
         }
 

@@ -2,7 +2,7 @@ package com.chess_for_fun.com.Pieces;
 
 import com.chess_for_fun.com.ChessBoard;
 
-public class Queen extends Piece{
+public class Queen extends Piece {
 
     public Queen(String color) {
         super(color);
@@ -10,9 +10,12 @@ public class Queen extends Piece{
 
     @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board) {
-        return  false;
+        if (canMoveTo(startX, startY, endX, endY, board) &&
+                !knightMove(startX, startY, endX, endY)) {
+            return true;
+        }
+
+        return false;
     }
 
-   
-    
 }
